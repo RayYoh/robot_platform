@@ -38,7 +38,7 @@
                 <geom contype="0" conaffinity="0" group="1" type="mesh" rgba=".7 .7 .7 1" mass="0"/>
             </default>
             <default class="ur10_col">
-                <geom contype="1" conaffinity="1" group="2" type="mesh" rgba=".7 .7 .7 1"/>
+                <geom contype="1" conaffinity="1" group="2" type="mesh" rgba=".7 .7 .7 0"/>
             </default>
         </default>
     </default>
