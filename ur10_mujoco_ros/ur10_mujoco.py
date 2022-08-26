@@ -61,15 +61,18 @@ class RobotSimulation(object):
         print("qpos_init:", qpos_init)
         nu = self.env.model.nu
         print('nu: ', nu)
+        ctrl = np.array([1.5707963, 0, 1.5707963, 0, -1.5707963, 0])
         while not rospy.is_shutdown():
-            self.env.do_simulation()
+            # self.env.do_simulation()
+            self.env.do_ctrl_simulation(ctrl)
+            print(self.env.data.qpos)
             self._rate.sleep()
 
         self.env.render_close()
 
 
 def main():
-    model_path = join(dirname(abspath(__file__)), 'ur10_sim/ur10_robot.xml')
+    model_path = join(dirname(abspath(__file__)), '../ur10_sim/ur10_robot_joint_ctrl.xml')
     sim = RobotSimulation(model_path)
 
     print('start job')

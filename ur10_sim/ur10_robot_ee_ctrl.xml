@@ -1,6 +1,6 @@
 <mujoco model="ur10">
     <compiler angle="radian" meshdir="meshes/" coordinate="local" inertiafromgeom='auto' texturedir="textures"/>
-    <option timestep="0.01" apirate="200" iterations="20" noslip_iterations="20" tolerance="1e-10" impratio="10"
+    <option timestep="0.002" apirate="200" iterations="20" noslip_iterations="20" tolerance="1e-10" impratio="10"
 			gravity="0 0 -9.81" solver="PGS" cone="elliptic" />
     <size njmax="1500" nconmax="500" nstack="5000000" />
     <visual>
@@ -10,7 +10,7 @@
     </visual>
     <asset>
         <texture builtin="checker" height="512" name="texplane" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" type="2d" width="512"/>
-        <material name="floorplane" reflectance="0.3" texrepeat="1 1" texture="texplane" texuniform="true"/>
+        <material name="floor_mat" reflectance="0.3" texrepeat="1 1" texture="texplane" texuniform="true"/>
         <material name="table_mat" specular="0" shininess="0.5" reflectance="0" rgba="0.93 0.93 0.93 1"/>
     </asset>
     <asset>
@@ -30,9 +30,12 @@
         <mesh name="wrist2_vis" file="wrist2_vis.stl" />
         <mesh name="wrist3_vis" file="wrist3_vis.stl" />
     </asset>
+    <equality>
+        <weld body1="robot_end_mocap" body2="robot_end" solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    </equality>
     <default>
         <default class="ur10">
-            <joint pos="0 0 0" axis="0 0 1" limited="true"/>
+            <joint pos="0 0 0" axis="0 0 1" limited="true" armature="1" damping="50" frictionloss="0" stiffness="0"/>
             <position forcelimited="true" ctrllimited="true"/>
             <default class="ur10_vis">
                 <geom contype="0" conaffinity="0" group="1" type="mesh" rgba=".7 .7 .7 1" mass="0"/>
@@ -43,49 +46,49 @@
         </default>
     </default>
     <worldbody>
-        <geom name="floor" pos="0. 0. 0" size="3 3 .125" type="plane" condim="4" material="floorplane" contype="1" conaffinity="1"></geom>
+        <geom name="floor" pos="0. 0. 0" size="3 3 .125" type="plane" condim="4" material="floor_mat" contype="1" conaffinity="1"></geom>
 		<light directional="true" diffuse='1.0 1.0 1.0' pos="0 0 3" dir="0 0 -1"/>
-        <body name="table0" pos="0 0.9 0.25">
-            <geom size="0.45 1 0.25" type="box" condim="3" name="table0" material="table_mat" mass="2000" friction="0.1 0.005 0.0001"/>
+        <body name="table" pos="0 0.9 0.25">
+            <geom size="0.45 1 0.25" type="box" condim="3" name="table" material="table_mat" mass="2000" friction="0.1 0.005 0.0001"/>
         </body>
-<!--        <body name="platform" pos="0 0 0.69" euler="0 0 3.1415926">-->
-<!--            <geom name="platform" type="mesh" contype="0" conaffinity="0" rgba="0.7 0.7 0.7 1" mesh="platform"/>-->
-<!--            <geom type="mesh" contype="1" conaffinity="1" group="4" condim="6" rgba="0.7 0.7 0.7 1" mesh="platform"/>-->
-<!--        </body>-->
         <body name="base" pos="0 0 0.5">
             <geom name="base" class="ur10_vis" type="mesh" contype="0" conaffinity="0" group="1" rgba="0.7 0.7 0.7 1" mesh="base_vis" />
             <geom class="ur10_col" mesh="base"/>
             <body name="shoulder_link" pos="0 0 0.1273">
                 <inertial pos="0 0 0" mass="7.778" diaginertia="0.0314743 0.0314743 0.0218756" />
-                <joint name="shoulder_pan_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-6.28319 6.28319" damping="300"/>
+                <joint name="shoulder_pan_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-6.28319 6.28319"/>
                 <geom name="shoulder" type="mesh" contype="0" conaffinity="0" group="1" rgba="0.7 0.7 0.7 1" mesh="shoulder_vis" />
                 <geom class="ur10_col" mesh="shoulder"/>
                 <body name="upper_arm_link" pos="0 0.220941 0" quat="0.707107 0 0.707107 0" euler="0 0 0">
                     <inertial pos="0 -0.045 0.306" mass="12.93" diaginertia="0.421754 0.421754 0.0363656" />
-                    <joint name="shoulder_lift_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-6.28319 6.28319" damping="300"/>
+                    <joint name="shoulder_lift_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-6.28319 6.28319"/>
                     <geom name="upperarm" type="mesh" contype="0" conaffinity="0" group="1" rgba="0.7 0.7 0.7 1" mesh="upperarm_vis" />
                     <geom class="ur10_col" mesh="upperarm"/>
                     <body name="forearm_link" pos="0 -0.1719 0.612">
                         <inertial pos="0 0 0.28615" mass="3.87" diaginertia="0.11107 0.11107 0.0108844" />
-                        <joint name="elbow_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-3.14159 3.14159" damping="300"/>
+                        <joint name="elbow_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-3.14159 3.14159"/>
                         <geom name="forearm" type="mesh" contype="0" conaffinity="0" group="1" rgba="0.7 0.7 0.7 1" mesh="forearm_vis" />
                         <geom class="ur10_col" mesh="forearm"/>
                         <body name="wrist_1_link" pos="0 0 0.5723" quat="0.707107 0 0.707107 0" euler="0 0 0">
                             <inertial pos="0 0.1149 0" quat="0.5 0.5 -0.5 0.5" mass="1.96" diaginertia="0.0055125 0.00510825 0.00510825" />
-                            <joint name="wrist_1_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-6.28319 6.28319" damping="20"/>
+                            <joint name="wrist_1_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-6.28319 6.28319"/>
                             <geom name="wrist1" type="mesh" contype="0" conaffinity="0" group="1" rgba="0.7 0.7 0.7 1" mesh="wrist1_vis" />
                             <geom class="ur10_col" mesh="wrist1"/>
                             <body name="wrist_2_link" pos="0 0.1149 0">
                                 <inertial pos="0 0 0.1157" quat="0.5 0.5 -0.5 0.5" mass="1.96" diaginertia="0.0055125 0.00510825 0.00510825" />
-                                <joint name="wrist_2_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-6.28319 6.28319" damping="20"/>
+                                <joint name="wrist_2_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-6.28319 6.28319"/>
                                 <geom name="wrist2" type="mesh" contype="0" conaffinity="0" group="1" rgba="0.7 0.7 0.7 1" mesh="wrist2_vis" />
                                 <geom class="ur10_col" mesh="wrist2"/>
                                 <body name="wrist_3_link" pos="0 0 0.1157">
                                     <inertial pos="0 0.0769759 0" quat="0.707107 0 0 0.707107" mass="0.203" diaginertia="0.000204542 0.000117966 0.000117966" />
-                                    <joint name="wrist_3_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-6.28319 6.28319" damping="20"/>
+                                    <joint name="wrist_3_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-6.28319 6.28319"/>
                                     <geom name="wrist3" type="mesh" contype="0" conaffinity="0" group="1" rgba="0.7 0.7 0.7 1" mesh="wrist3_vis" />
                                     <geom class="ur10_col" mesh="wrist3"/>
-                                    <geom size="0.005 0.005 0.005" pos="0 0.0822 0" quat="0.707107 0 0 0.707107" type="box" />
+<!--                                    <geom size="0.005 0.005 0.005" pos="0 0.0822 0" quat="0.707107 0 0 0.707107" type="box" rgba="0 1 0 0.5"/>-->
+                                    <body name="robot_end" pos="0 0.09 0">
+<!--                                        <geom size="0.005 0.005 0.005" pos="0 0 0" quat="0.707107 0 0 0.707107" type="box" rgba="0 1 0 0.5"/>-->
+                                        <site name="robot_end" size="0.005 0.005 0.005" pos="0 0 0" type="sphere" rgba="0 1 0 0.5"/>
+                                    </body>
                                 </body>
                             </body>
                         </body>
@@ -93,14 +96,20 @@
                 </body>
             </body>
         </body>
+        <body mocap="true" name="robot_end_mocap" pos="0 0 2" >
+            <geom conaffinity="0" contype="0" size="0.005 0.005 0.005" pos="0 0 0" type="box" rgba="1 0 0 0.5"/>
+            <geom conaffinity="0" contype="0" pos="0 0 0" rgba="1 0 0 0.1" size="1 0.005 0.005" type="box"/>
+            <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 1 0 0.1" size="0.005 1 0.001" type="box"/>
+            <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0 1 0.1" size="0.005 0.005 1" type="box"/>
+        </body>
     </worldbody>
 
-    <actuator>
-        <position name="shoulder_pan_joint" class="ur10" ctrlrange="-6.28319 6.28319" forcerange="-330 330" joint="shoulder_pan_joint" kp="1000"/>
-        <position name="shoulder_lift_joint" class="ur10" ctrlrange="-6.28319 6.28319" forcerange="-330 330" joint="shoulder_lift_joint" kp="3000"/>
-        <position name="elbow_joint" class="ur10" ctrlrange="-3.14159 3.14159" forcerange="-150 150" joint="elbow_joint" kp="1000"/>
-        <position name="wrist_1_joint" class="ur10" ctrlrange="-6.28319 6.28319" forcerange="-56 56" joint="wrist_1_joint" kp="100"/>
-        <position name="wrist_2_joint" class="ur10" ctrlrange="-6.28319 6.28319" forcerange="-56 56" joint="wrist_2_joint" kp="100"/>
-        <position name="wrist_3_joint" class="ur10" ctrlrange="-6.28319 6.28319" forcerange="-56 56" joint="wrist_3_joint" kp="100"/>
-    </actuator>
+<!--    <actuator>-->
+<!--        <position name="shoulder_pan_joint" class="ur10" ctrlrange="-6.28319 6.28319" forcerange="-330 330" joint="shoulder_pan_joint" kp="1000"/>-->
+<!--        <position name="shoulder_lift_joint" class="ur10" ctrlrange="-6.28319 6.28319" forcerange="-330 330" joint="shoulder_lift_joint" kp="3000"/>-->
+<!--        <position name="elbow_joint" class="ur10" ctrlrange="-3.14159 3.14159" forcerange="-150 150" joint="elbow_joint" kp="1000"/>-->
+<!--        <position name="wrist_1_joint" class="ur10" ctrlrange="-6.28319 6.28319" forcerange="-56 56" joint="wrist_1_joint" kp="100"/>-->
+<!--        <position name="wrist_2_joint" class="ur10" ctrlrange="-6.28319 6.28319" forcerange="-56 56" joint="wrist_2_joint" kp="100"/>-->
+<!--        <position name="wrist_3_joint" class="ur10" ctrlrange="-6.28319 6.28319" forcerange="-56 56" joint="wrist_3_joint" kp="100"/>-->
+<!--    </actuator>-->
 </mujoco>
