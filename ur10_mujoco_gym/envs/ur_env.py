@@ -158,14 +158,15 @@ class UREnv(gym_robot_env.RobotEnv):
         utils.reset_mocap_welds(self.sim)
         self.sim.forward()
 
-        # Move end effector into position.
-        robot_end_pose = np.array(
-            [0, 0.3, -0.2]
-        ) + self.sim.data.get_site_xpos("robot_end")
-        # omit orientation
-        # robot_end_quat = np.array([1.0, 0.0, 1.0, 0.0])
+        # Move mocap into position and orientation
+        robot_end_pose = self.sim.data.get_site_xpos("robot_end")
+        # fix the orientation
+        robot_end_quat = np.array([0.70711, -0.70711, 0.0, 0.0])
         self.sim.data.set_mocap_pos("robot_end_mocap", robot_end_pose)
-        # self.sim.data.set_mocap_quat("robot_end_mocap", robot_end_quat)
+        self.sim.data.set_mocap_quat("robot_end_mocap", robot_end_quat)
+        # move robot_end to the robot_end_mocap
+        for _ in range(10):
+            self.sim.step()
 
         # Extract information for sampling goals.
         self.initial_robot_end_xpos = self.sim.data.get_site_xpos("robot_end").copy()

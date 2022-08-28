@@ -1,8 +1,7 @@
 import os
 from gym import utils
 from ur10_mujoco_gym.envs import ur_env
-# Ensure we get the path separator correct on windows
-MODEL_XML_PATH = '/home/raylyao/ur10/ur10_sim/ur10_robot_ee_ctrl.xml'
+MODEL_XML_PATH = os.path.abspath(os.path.join(os.getcwd(), "ur10_sim/ur10_robot_ee_ctrl.xml"))
 
 
 class URReachEnv(ur_env.UREnv, utils.EzPickle):
