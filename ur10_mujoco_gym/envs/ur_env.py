@@ -61,12 +61,7 @@ class UREnv(gym_robot_env.RobotEnv):
         pos_ctrl = action[:3]
 
         pos_ctrl *= 0.05  # limit maximum change in position
-        rot_ctrl = [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-        ]  # fixed rotation of the end effector, expressed as a quaternion
+        rot_ctrl = [1.0, -1.0, 0.0, 0.0]  # fixed rotation of the end effector, expressed as a quaternion
         action = np.concatenate([pos_ctrl, rot_ctrl])
 
         # Apply action to simulation.
@@ -115,6 +110,22 @@ class UREnv(gym_robot_env.RobotEnv):
             "desired_goal": self.goal.copy(),
         }
 
+    def _viewer_setup(self):
+        body_id = self.sim.model.body_name2id('robot_end')
+        lookat = self.sim.data.body_xpos[body_id]
+        for idx, val in enumerate(lookat):
+            self.viewer.cam.lookat[idx] = val
+        self.viewer.cam.distance = 2.5
+        self.viewer.cam.azimuth = 132.0
+        self.viewer.cam.elevation = -14.0
+
+    def _render_callback(self):
+        # Visualize target
+        sites_offset = (self.sim.data.site_xpos - self.sim.model.site_pos).copy()
+        site_id = self.sim.model.site_name2id('target')
+        self.sim.model.site_pos[site_id] = self.goal - sites_offset[0]
+        self.sim.forward()
+
     def _reset_sim(self):
         self.sim.set_state(self.initial_state)
 
@@ -159,9 +170,10 @@ class UREnv(gym_robot_env.RobotEnv):
         self.sim.forward()
 
         # Move mocap into position and orientation
-        robot_end_pose = self.sim.data.get_site_xpos("robot_end")
+        robot_end_pose = [0, 0.5, 0] + self.sim.data.get_site_xpos("robot_end")
         # fix the orientation
-        robot_end_quat = np.array([0.70711, -0.70711, 0.0, 0.0])
+        # this is equal to robot_end_quat = np.array([0.70711, -0.70711, 0.0, 0.0])
+        robot_end_quat = np.array([1.0, -1.0, 0.0, 0.0])
         self.sim.data.set_mocap_pos("robot_end_mocap", robot_end_pose)
         self.sim.data.set_mocap_quat("robot_end_mocap", robot_end_quat)
         # move robot_end to the robot_end_mocap

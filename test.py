@@ -1,12 +1,29 @@
 import os
-from os.path import dirname, abspath, join
+from os.path import dirname, abspath
 import gym
 import ur10_mujoco_gym
 from stable_baselines3 import PPO
 from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.logger import configure
 
-if __name__ == '__main__':
+
+def test_env():
+    env = gym.make('UR10Reach-v0', reward_type='dense')
+    # env = gym.make('FetchReach-v1', reward_type='dense')
+    print(env.action_space)
+    print(env.observation_space)
+    env.reset()
+    done = False
+    for _ in range(10):
+        while not done:
+            action = env.action_space.sample()
+            obs, reward, done, info = env.step(action)
+            env.render()
+        env.reset()
+        done = False
+
+
+def train():
     logdir = dirname(abspath(__file__)) + '/tmp/UR10'
     os.makedirs(logdir, exist_ok=True)
     env = gym.make('UR10Reach-v0', reward_type='dense')
@@ -17,3 +34,10 @@ if __name__ == '__main__':
     model = PPO('MultiInputPolicy', env, verbose=1)
     model.set_logger(new_logger)
     model.learn(total_timesteps=50_0000)
+    model.save(logdir+'/model_file')
+    model.policy.save(logdir+'/policy_file')
+
+
+if __name__ == '__main__':
+    # train()
+    test_env()
