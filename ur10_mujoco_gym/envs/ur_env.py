@@ -13,7 +13,7 @@ class UREnv(gym_robot_env.RobotEnv):
             self,
             model_path,
             n_substeps,
-            gripper_extra_height,
+            end_extra_height,
             has_object,
             target_in_the_air,
             target_offset,
@@ -23,7 +23,7 @@ class UREnv(gym_robot_env.RobotEnv):
             initial_qpos,
             reward_type,
     ):
-        self.gripper_extra_height = gripper_extra_height
+        self.end_extra_height = end_extra_height
         self.has_object = has_object
         self.target_in_the_air = target_in_the_air
         self.target_offset = target_offset
@@ -170,7 +170,7 @@ class UREnv(gym_robot_env.RobotEnv):
         self.sim.forward()
 
         # Move mocap into position and orientation
-        robot_end_pose = [0, 0.5, 0] + self.sim.data.get_site_xpos("robot_end")
+        robot_end_pose = [0, 0.05, 0] + self.sim.data.get_site_xpos("robot_end")
         # fix the orientation
         # this is equal to robot_end_quat = np.array([0.70711, -0.70711, 0.0, 0.0])
         robot_end_quat = np.array([1.0, -1.0, 0.0, 0.0])

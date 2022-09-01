@@ -19,7 +19,7 @@ class URReachEnv(ur_env.UREnv, utils.EzPickle):
             MODEL_XML_PATH,
             has_object=False,
             n_substeps=20,
-            gripper_extra_height=0.2,
+            end_extra_height=0.09,
             target_in_the_air=True,
             target_offset=0.0,
             obj_range=0.15,

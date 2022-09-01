@@ -10,7 +10,7 @@ One can transfer urdf from xacro by:
 rosrun xacro xacro --inorder ur10_robot.urdf.xacro > ur10_robot.urdf
 ```
 And then, xml file can be obtained by MuJoCo:
-```angular2html
+```
 ./compile /path/to/ur10_robot.urdf /path/to/ur10_robot.xml
 ```
 
@@ -22,3 +22,12 @@ Gym style interface and environments for reinforcement learning. (Some code borr
 
 ## Summary
 This repository is not only for UR10, you can use this pipeline to build your own robot environment.
+
+## Log
+- 20220901
+    - The training is not stable. Reason (maybe): sometimes the position is hard for robot to reach. (Solution: modify `robot_end_pose`).
+    - The training process maybe be studk in local optimum. (Don't know the reason now.)
+
+## TODO
+- 20220901
+    - Add sensors on the robot and compliant control.
