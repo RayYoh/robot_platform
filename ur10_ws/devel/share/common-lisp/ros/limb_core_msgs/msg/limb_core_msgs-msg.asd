@@ -1,0 +1,33 @@
+
+(cl:in-package :asdf)
+
+(defsystem "limb_core_msgs-msg"
+  :depends-on (:roslisp-msg-protocol :roslisp-utils :geometry_msgs-msg
+               :std_msgs-msg
+)
+  :components ((:file "_package")
+    (:file "ContactState" :depends-on ("_package_ContactState"))
+    (:file "_package_ContactState" :depends-on ("_package"))
+    (:file "EndpointState" :depends-on ("_package_EndpointState"))
+    (:file "_package_EndpointState" :depends-on ("_package"))
+    (:file "EndpointStates" :depends-on ("_package_EndpointStates"))
+    (:file "_package_EndpointStates" :depends-on ("_package"))
+    (:file "Float64MultiArray" :depends-on ("_package_Float64MultiArray"))
+    (:file "_package_Float64MultiArray" :depends-on ("_package"))
+    (:file "JointCommand" :depends-on ("_package_JointCommand"))
+    (:file "_package_JointCommand" :depends-on ("_package"))
+    (:file "JointState" :depends-on ("_package_JointState"))
+    (:file "_package_JointState" :depends-on ("_package"))
+    (:file "MarkerArray" :depends-on ("_package_MarkerArray"))
+    (:file "_package_MarkerArray" :depends-on ("_package"))
+    (:file "MarkerStringArray" :depends-on ("_package_MarkerStringArray"))
+    (:file "_package_MarkerStringArray" :depends-on ("_package"))
+    (:file "ObjectInfo" :depends-on ("_package_ObjectInfo"))
+    (:file "_package_ObjectInfo" :depends-on ("_package"))
+    (:file "ObjectTrajectory" :depends-on ("_package_ObjectTrajectory"))
+    (:file "_package_ObjectTrajectory" :depends-on ("_package"))
+    (:file "ShutdownReason" :depends-on ("_package_ShutdownReason"))
+    (:file "_package_ShutdownReason" :depends-on ("_package"))
+    (:file "TactileState" :depends-on ("_package_TactileState"))
+    (:file "_package_TactileState" :depends-on ("_package"))
+  ))

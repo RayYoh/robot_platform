@@ -1,0 +1,9 @@
+string[] id
+bool[] in_hand
+geometry_msgs/Pose pose # torso->tool
+
+---
+
+std_msgs/Header header
+string[] id
+geometry_msgs/Pose[] pose # torso->object

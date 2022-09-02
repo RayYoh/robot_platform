@@ -1,0 +1,4 @@
+# Sets object information with the request data, and response returns true if set successfully.
+limb_core_msgs/ObjectInfo object_info
+---
+bool success

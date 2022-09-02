@@ -1,0 +1,3 @@
+limb_core_msgs/ShutdownReason reason
+---
+bool success

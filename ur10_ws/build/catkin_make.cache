@@ -1,0 +1,2 @@
+limb_core_msgs
+-DCATKIN_WHITELIST_PACKAGES=limb_core_msgs -DCATKIN_DEVEL_PREFIX=/home/raylyao/ur10/ur10_ws/devel -DCMAKE_INSTALL_PREFIX=/home/raylyao/ur10/ur10_ws/install -G Unix Makefiles

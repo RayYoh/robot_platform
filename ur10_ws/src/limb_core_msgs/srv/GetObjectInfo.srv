@@ -1,0 +1,6 @@
+# Gets object information with the requested object name.
+# and returns true and object infomation if get successfully.
+string object_name
+---
+bool success
+limb_core_msgs/ObjectInfo object_info

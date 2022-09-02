@@ -1,0 +1,6 @@
+int16 id
+
+---
+bool result
+std_msgs/Header header
+int16[] data
