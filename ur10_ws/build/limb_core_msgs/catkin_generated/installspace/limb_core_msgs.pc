@@ -1,8 +1,0 @@
-prefix=/home/raylyao/ur10/ur10_ws/install
-
-Name: limb_core_msgs
-Description: Description of limb_core_msgs
-Version: 0.0.0
-Cflags: -I${prefix}/include
-Libs: -L${prefix}/lib 
-Requires: message_runtime geometry_msgs sensor_msgs std_msgs
