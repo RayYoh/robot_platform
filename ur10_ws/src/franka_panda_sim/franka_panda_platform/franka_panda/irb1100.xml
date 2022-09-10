@@ -1,0 +1,47 @@
+<mujoco model="irb1100_left">
+    <body childclass="Arm" name="irb1100_left" pos="0 0.054 0"  >
+        <geom class="Visual" mesh="base_link" />
+<!--        <geom class="Collision" type="mesh"  mesh="base_link" />-->
+        <body name="left_link_1" pos="0 0 0.1595">
+            <inertial pos="0.00025388 -0.0063036 0.075507" quat="0.67584 0.205657 0.223031 0.671716" mass="8.4525" diaginertia="0.0495465 0.0367553 0.0360622" />
+            <joint name="left_joint_1" pos="0 0 0" axis="0 0 1" limited="true" range="-6.28 6.28" />
+            <geom class="Visual" mesh="link_1" />
+<!--            <geom class="Collision" type="mesh"  mesh="link_1" />-->
+            <body name="left_link_2" pos="0 0 0.168" quat="0.499998 -0.5 -0.500002 0.5">
+                <inertial pos="-0.0090076 -0.12401 0.0029704" quat="0.708007 0.706117 0.000920986 -0.0111284" mass="6.5596" diaginertia="0.0798201 0.0683401 0.0182478" />
+                <joint name="left_joint_2" pos="0 0 0" axis="0 0 1" limited="true" range="-6.28 6.28" />
+                <geom class="Visual" mesh="link_2" />
+<!--                <geom class="Collision" type="mesh"  mesh="link_2" />-->
+                <body name="left_link_3" pos="0 -0.28 0">
+                    <inertial pos="-0.0086541 0.0032685 0.0011803" quat="0.0300114 0.7012 -0.0211464 0.712019" mass="2.8618" diaginertia="0.00598957 0.00506069 0.00422644" />
+                    <joint name="left_joint_3" pos="0 0 0" axis="0 0 1" limited="true" range="-6.28 6.28" />
+                    <geom class="Visual" mesh="link_3" />
+<!--                    <geom class="Collision" type="mesh"  mesh="link_3" />-->
+                    <body name="left_link_4" pos="0.0725 -0.01 0" quat="0.707105 0 0.707108 0">
+                        <inertial pos="-0.00038492 -0.002905 0.11604" quat="0.707698 -0.00992817 -0.00025028 0.706445" mass="3.9183" diaginertia="0.0186845 0.0176345 0.00534516" />
+                        <joint name="left_joint_4" pos="0 0 0" axis="0 0 1" limited="true" range="-6.28 6.28" />
+                        <geom class="Visual" mesh="link_4" />
+<!--                        <geom class="Collision" type="mesh"  mesh="link_4" />-->
+                        <body name="left_link_5" pos="0 0 0.2265" quat="0.499998 -0.5 -0.500002 0.5">
+                            <inertial pos="4.36621e-06 -0.012718 0.00183857" quat="0.486109 0.513515 -0.513496 0.486129" mass="0.88694" diaginertia="0.000914362 0.000834419 0.000545391" />
+                            <joint name="left_joint_5" pos="0 0 0" axis="0 0 1" limited="true" range="-6.28 6.28" />
+                            <geom class="Visual" mesh="link_5" />
+<!--                            <geom class="Collision" type="mesh"  mesh="link_5" />-->
+                            <body name="left_link_6" pos="0 -0.0634 0" quat="0.499998 0.5 0.5 -0.500002">
+                                <inertial pos="3.6722e-05 -5.8527e-05 -0.0037167" quat="0.457498 0.539131 -0.457117 0.539515" mass="0.019781" diaginertia="4.6818e-06 2.50697e-06 2.40323e-06" />
+                                <joint name="left_joint_6" pos="0 0 0" axis="0 0 1" limited="true" range="-6.28 6.28" />
+                                <geom class="Visual" mesh="link_6" />
+<!--                                <geom class="Collision" type="mesh"  mesh="link_6" />-->
+                                <site name="left_tool"/>
+
+
+                                <!-- add gripper here -->
+<!--                                <include file="fpt_hand/fpt_hand_left.xml"></include>-->
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </body>
+</mujoco>

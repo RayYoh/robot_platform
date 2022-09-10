@@ -1,0 +1,20 @@
+<launch>
+    <!-- Path of the .xml file relative to project directory -->
+    <rosparam param="behavior_tree_file">"meta/meta_python_example/config/bt_example.xml"</rosparam>
+    <!-- List of limb object name -->
+    <rosparam param="limb_name_list">["irb1100_left", "irb1100_right"]</rosparam>
+    <!-- List of path of limb object .yaml file relative to project directory -->
+    <rosparam param="limb_file_list">["limb_demo/config/abb/irb1100_left.yaml", "limb_demo/config/abb/irb1100_right.yaml"]</rosparam>
+
+    <!-- 启动行为树运行meta模块的C++进程，启动前确保当前模块已被注册到meta_main.cpp中 -->
+    <node pkg="manipulation" type="meta_main" name="meta_main_example" output="screen"></node>
+    <!-- 启动行为树运行meta模块的python进程，启动前确保当前模块已被注册到meta_main.py中 -->
+    <node pkg="manipulation" type="meta_main.py" name="meta_main_python_example" output="screen"></node>
+</launch>
+<!-- <launch>
+    <include file="$(find manipulation)/meta/meta_main/launch/meta_main.launch">
+        <arg name="behavior_tree_file" value="meta/meta_python_example/config/bt_example.xml"/>
+        <arg name="node_name" value="example"/>
+        <arg name="mode" value="arms"/>
+    </include>
+</launch> -->

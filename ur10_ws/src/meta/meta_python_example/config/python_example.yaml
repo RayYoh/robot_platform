@@ -1,0 +1,7 @@
+Meta: MetaPythonExample
+Robot:
+  arm:
+    - ur10
+  effector:
+Object: {}
+Constraint: {}

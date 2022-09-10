@@ -1,0 +1,225 @@
+<mujoco>
+    <!-- Table -->
+		<body pos="0.42 0 0.75" name="table">
+            <freejoint/>
+<!--			<joint name="table:joint" type="free" damping="0.01"></joint>-->
+			<geom size="0.3 0.6 0.02" type="box" material="table_mat"  ></geom>
+			<body name="table_1" pos="0.28 0.58 -0.375">
+				<geom size="0.02 0.02 0.375" type="box" material="table_mat"  ></geom>
+                <geom type="capsule" group="4" size="0.001 0.02"  rgba="0.5 0.5 0.5 0.5" contype="1" conaffinity="0" euler="1.57 0 0"/>
+                <geom type="capsule" group="4" size="0.001 0.02"  rgba="0.5 0.5 0.5 0.5" contype="1" conaffinity="0" euler="0 1.57 0"/>
+			</body>
+			<body name="table_2" pos="0.28 -0.58 -0.375">
+				<geom size="0.02 0.02 0.375" type="box" material="table_mat" ></geom>
+                <geom type="capsule" group="4" size="0.001 0.02"  rgba="0.5 0.5 0.5 0.5" contype="1" conaffinity="0" euler="1.57 0 0"/>
+                <geom type="capsule" group="4" size="0.001 0.02"  rgba="0.5 0.5 0.5 0.5" contype="1" conaffinity="0" euler="0 1.57 0"/>
+			</body>
+			<body name="table_3" pos="-0.28 0.58 -0.375">
+				<geom size="0.02 0.02 0.375" type="box" material="table_mat" ></geom>
+                <geom type="capsule" group="4" size="0.001 0.02"  rgba="0.5 0.5 0.5 0.5" contype="1" conaffinity="0" euler="1.57 0 0"/>
+                <geom type="capsule" group="4" size="0.001 0.02"  rgba="0.5 0.5 0.5 0.5" contype="1" conaffinity="0" euler="0 1.57 0"/>
+			</body>
+			<body name="table_4" pos="-0.28 -0.58 -0.375">
+				<geom size="0.02 0.02 0.375" type="box" material="table_mat" ></geom>
+                <geom type="capsule" group="4" size="0.001 0.02"  rgba="0.5 0.5 0.5 0.5" contype="1" conaffinity="0" euler="1.57 0 0"/>
+                <geom type="capsule" group="4" size="0.001 0.02"  rgba="0.5 0.5 0.5 0.5" contype="1" conaffinity="0" euler="0 1.57 0"/>
+			</body>
+
+
+		</body>
+
+    <!-- Object -->
+    <body pos="0.3 0.1 0.9" name="object0">
+        <freejoint/>
+        <geom pos="0 0 0" mesh="can_mesh" type="mesh"  material="coke" group="1" condim="4"/>
+        <geom class="Object" pos="0 0 0" mesh="can_mesh" type="mesh" material="coke"  />
+
+        <site rgba="0 0 0 0" size="0.005" pos="0 0 -0.06" name="can_bottom_site"/>
+        <site rgba="0 0 0 0" size="0.005" pos="0 0 0.04" name="can_top_site"/>
+        <site rgba="0 0 0 0" size="0.005" pos="0.025 0.025 0" name="can_horizontal_radius_site"/>
+
+        <geom type="capsule" group="4" size="0.001 0.02"  rgba="0.5 0.5 0.5 0.5" contype="1" conaffinity="0" euler="1.57 0 0"/>
+        <geom type="capsule" group="4" size="0.001 0.02"  rgba="0.5 0.5 0.5 0.5" contype="1" conaffinity="0" euler="0 1.57 0"/>
+    </body>
+
+
+    <body pos="0.5 0.5 0.8" name="largeshaker_z">
+        <freejoint/>
+        <geom class="Visual" mesh="largeshaker_z" />
+        <geom class="Object" pos="0 0 0" mesh="largeshaker_z" type="mesh"  conaffinity="1" contype="1" friction="1 1 1" rgba="0.5 0.5 0.5 0.5"/>
+        <geom type="capsule" group="4" size="0.001 0.02"  rgba="0.5 0.5 0.5 0.5" contype="1" conaffinity="0" euler="1.57 0 0"/>
+        <geom type="capsule" group="4" size="0.001 0.02"  rgba="0.5 0.5 0.5 0.5" contype="1" conaffinity="0" euler="0 1.57 0"/>
+    </body>
+
+    <body pos="0.4 -0.3 0.8" name="cup_1">
+        <freejoint/>
+        <geom class="Visual" mesh="cup_1" />
+        <geom class="Object" pos="0 0 0" mesh="cup_1" type="mesh"  conaffinity="1" contype="1" friction="1 1 1" rgba="0.5 0.5 0.5 0.5"/>
+        <geom type="capsule" group="4" size="0.001 0.02"  rgba="0.5 0.5 0.5 0.5" contype="1" conaffinity="0" euler="1.57 0 0"/>
+        <geom type="capsule" group="4" size="0.001 0.02"  rgba="0.5 0.5 0.5 0.5" contype="1" conaffinity="0" euler="0 1.57 0"/>
+    </body>
+
+
+    <body pos="0.4 0.3 0.8" name="glass_z">
+        <freejoint/>
+        <geom class="Visual" mesh="glass_z" />
+        <geom class="Object" pos="0 0 0" mesh="glass_z" type="mesh"  conaffinity="1" contype="1" friction="1 1 1" rgba="0.5 0.5 0.5 0.5"/>
+        <geom type="capsule" group="4" size="0.001 0.02"  rgba="0.5 0.5 0.5 0.5" contype="1" conaffinity="0" euler="1.57 0 0"/>
+        <geom type="capsule" group="4" size="0.001 0.02"  rgba="0.5 0.5 0.5 0.5" contype="1" conaffinity="0" euler="0 1.57 0"/>
+    </body>
+
+
+    <body pos="0.5 -0.5 0.8" name="wineBottle_z">
+            <freejoint/>
+            <geom class="Visual" mesh="wineBottle_z" pos="0 0 0" euler="0 0 0" rgba="0.5 0.5 0.5 0.5" />
+            <geom class="Object" type="mesh" mesh="wineBottle_z" mass="0.351" />
+
+            <geom type="capsule" group="4" size="0.001 0.02"  rgba="0.5 0.5 0.5 0.5" contype="1" conaffinity="0" euler="1.57 0 0"/>
+            <geom type="capsule" group="4" size="0.001 0.02"  rgba="0.5 0.5 0.5 0.5" contype="1" conaffinity="0" euler="0 1.57 0"/>
+
+    </body>
+
+    <body pos="0.6 0.0 0.9" name="obstacle_sphere" mocap="true">
+            <site name="obstacle_sphere" pos="0 0 0" size="0.01 0.01 0.01" rgba="0 1 0 1.0" type="sphere"></site>
+            <geom class="Visual" pos="0 0 0" size="0.1 0.1 0.1" rgba="1 0 0 0.5" type="sphere"/>
+    </body>
+
+    <body pos="0.8 0.5 0.8" name="bottle" mocap="true">
+            <site name="bottle" pos="0 0 0" size="0.01 0.01 0.01" rgba="1 0 0 0.4" type="sphere"></site>
+            <geom class="Visual" mesh="wineBottle_z" pos="0 0 -0.06" euler="0 0 0" rgba="1 1 1 1.0" />
+    </body>
+
+    <body pos="0.3 0.5 0.8" name="bottle_catch" mocap="true">
+            <site name="bottle_catch" pos="0 0 0" size="0.01 0.01 0.01" rgba="0 1 0 1.0" type="sphere"></site>
+            <geom class="Visual" mesh="wineBottle_z" pos="0 0 -0.06" euler="0 0 0" rgba="0 1 0 0.5" />
+    </body>
+
+    <body pos="0.3 0.5 0.8" name="bottle_grasp" mocap="true">
+            <site name="bottle_grasp" pos="0 0 0" size="0.01 0.01 0.01" rgba="0 1 0 1.0" type="sphere"></site>
+            <geom class="Visual" mesh="wineBottle_z" pos="0 0 -0.06" euler="0 0 0" rgba="0 1 0 1.0" />
+    </body>
+
+    <body pos="0.3 0.5 0.8" name="bottle_ft_predict" mocap="true">
+            <site name="bottle_ft_predict" pos="0 0 0" size="0.01 0.01 0.01" rgba="0 0 1 1.0" type="sphere"></site>
+            <geom class="Visual" mesh="wineBottle_z" pos="0 0 -0.06" euler="0 0 0" rgba="0 0 1 1.0" />
+    </body>
+
+    <body pos="1.0 -0.5 0" name="collison_point_1" mocap="true">
+        <site name="collison_point_1" pos="0 0 0" size="0.02 0.02 0.02" rgba="1 0 0 1" type="sphere"></site>
+    </body>
+
+    <body pos="1.0 0.5 0" name="collison_point_2" mocap="true">
+        <site name="collison_point_2" pos="0 0 0" size="0.02 0.02 0.02" rgba="1 0 0 1" type="sphere"></site>
+    </body>
+
+    <body childclass="Effector" name="left_effector_catching" mocap="true">
+        <site name="left_effector_catching"/>
+
+        <body childclass="Effector" name="left_catching_fpt_hand_command" pos="0 0 0.1686" quat="0 0 0 1" >
+            <geom class="Visual" mesh="link_palm" rgba="0 0.3 0 0.5"/>
+            <geom class="Visual" pos="0 -0.0255 0" mesh="link_f0_mpr" rgba="0 0.3 0 0.5"/>
+
+            <body name="left_catching_link_f0_mpp" pos="0 -0.0435 0" quat="3.27579e-05 0.707105 -3.27581e-05 0.707108">
+                <geom class="Visual" mesh="link_f0_mpp" rgba="0 0.3 0 0.5"/>
+                <body name="left_catching_link_f0_dip" pos="0.05 0 0">
+                    <geom class="Visual" mesh="link_f0_dip" rgba="0 0.3 0 0.5"/>
+                </body>
+            </body>
+            <body name="left_catching_link_f1_mpr" pos="-0.026 0.0255 0" quat="0.707105 0 0 0.707108">
+                <geom class="Visual" mesh="link_f1_mpr" rgba="0 0.3 0 0.5"/>
+                <body name="left_catching_link_f1_mpp" pos="0.018 0 0" quat="0.499998 0.500001 -0.5 0.500001">
+                    <geom class="Visual" mesh="link_f1_mpp" rgba="0 0.3 0 0.5"/>
+                    <body name="left_catching_link_f1_dip" pos="0.05 0 0">
+                        <geom class="Visual" mesh="link_f1_dip" rgba="0 0.3 0 0.5"/>
+                    </body>
+                </body>
+            </body>
+            <body name="left_catching_link_f2_mpr" pos="0.026 0.0255 0">
+                <geom class="Visual" mesh="link_f2_mpr" rgba="0 0.3 0 0.5"/>
+                <body name="left_catching_link_f2_mpp" pos="0 0.018 0" quat="3.27579e-05 0.707105 -3.27581e-05 0.707108">
+                    <geom class="Visual" mesh="link_f2_mpp" rgba="0 0.3 0 0.5"/>
+                    <body name="left_catching_link_f2_dip" pos="0.05 0 0">
+                        <geom class="Visual" mesh="link_f2_dip" rgba="0 0.3 0 0.5"/>
+                    </body>
+                </body>
+            </body>
+        </body>
+
+
+    </body>
+
+
+    <body childclass="Effector" name="left_effector_grasping" mocap="true">
+        <site name="left_effector_grasping"/>
+
+        <body childclass="Effector" name="left_grasping_fpt_hand_command" pos="0 0 0.1686" quat="0 0 0 1" >
+            <geom class="Visual" mesh="link_palm" rgba="0 0.6 0 0.5"/>
+            <geom class="Visual" pos="0 -0.0255 0" mesh="link_f0_mpr" rgba="0 0.6 0 0.5"/>
+
+            <body name="left_grasping_link_f0_mpp" pos="0 -0.0435 0" quat="3.27579e-05 0.707105 -3.27581e-05 0.707108">
+                <geom class="Visual" mesh="link_f0_mpp" rgba="0 0.6 0 0.5"/>
+                <body name="left_grasping_link_f0_dip" pos="0.05 0 0">
+                    <geom class="Visual" mesh="link_f0_dip" rgba="0 0.6 0 0.5"/>
+                </body>
+            </body>
+            <body name="left_grasping_link_f1_mpr" pos="-0.026 0.0255 0" quat="0.707105 0 0 0.707108">
+                <geom class="Visual" mesh="link_f1_mpr" rgba="0 0.6 0 0.5"/>
+                <body name="left_grasping_link_f1_mpp" pos="0.018 0 0" quat="0.499998 0.500001 -0.5 0.500001">
+                    <geom class="Visual" mesh="link_f1_mpp" rgba="0 0.6 0 0.5"/>
+                    <body name="left_grasping_link_f1_dip" pos="0.05 0 0">
+                        <geom class="Visual" mesh="link_f1_dip" rgba="0 0.6 0 0.5"/>
+                    </body>
+                </body>
+            </body>
+            <body name="left_grasping_link_f2_mpr" pos="0.026 0.0255 0">
+                <geom class="Visual" mesh="link_f2_mpr" rgba="0 0.6 0 0.5"/>
+                <body name="left_grasping_link_f2_mpp" pos="0 0.018 0" quat="3.27579e-05 0.707105 -3.27581e-05 0.707108">
+                    <geom class="Visual" mesh="link_f2_mpp" rgba="0 0.6 0 0.5"/>
+                    <body name="left_grasping_link_f2_dip" pos="0.05 0 0">
+                        <geom class="Visual" mesh="link_f2_dip" rgba="0 0.6 0 0.5"/>
+                    </body>
+                </body>
+            </body>
+        </body>
+
+
+    </body>
+
+
+    <body childclass="Effector" name="left_effector_command" mocap="true">
+        <site name="left_effector_command"/>
+
+        <body childclass="Effector" name="left_command_fpt_hand_command" pos="0 0 0.1686" quat="0 0 0 1" >
+            <geom class="Visual" mesh="link_palm" rgba="0 1 0 0.5"/>
+            <geom class="Visual" pos="0 -0.0255 0" mesh="link_f0_mpr" rgba="0 1 0 0.5"/>
+
+            <body name="left_command_link_f0_mpp" pos="0 -0.0435 0" quat="3.27579e-05 0.707105 -3.27581e-05 0.707108">
+                <geom class="Visual" mesh="link_f0_mpp" rgba="0 1 0 0.5"/>
+                <body name="left_command_link_f0_dip" pos="0.05 0 0">
+                    <geom class="Visual" mesh="link_f0_dip" rgba="0 1 0 0.5"/>
+                </body>
+            </body>
+            <body name="left_command_link_f1_mpr" pos="-0.026 0.0255 0" quat="0.707105 0 0 0.707108">
+                <geom class="Visual" mesh="link_f1_mpr" rgba="0 1 0 0.5"/>
+                <body name="left_command_link_f1_mpp" pos="0.018 0 0" quat="0.499998 0.500001 -0.5 0.500001">
+                    <geom class="Visual" mesh="link_f1_mpp" rgba="0 1 0 0.5"/>
+                    <body name="left_command_link_f1_dip" pos="0.05 0 0">
+                        <geom class="Visual" mesh="link_f1_dip" rgba="0 1 0 0.5"/>
+                    </body>
+                </body>
+            </body>
+            <body name="left_command_link_f2_mpr" pos="0.026 0.0255 0">
+                <geom class="Visual" mesh="link_f2_mpr" rgba="0 1 0 0.5"/>
+                <body name="left_command_link_f2_mpp" pos="0 0.018 0" quat="3.27579e-05 0.707105 -3.27581e-05 0.707108">
+                    <geom class="Visual" mesh="link_f2_mpp" rgba="0 1 0 0.5"/>
+                    <body name="left_command_link_f2_dip" pos="0.05 0 0">
+                        <geom class="Visual" mesh="link_f2_dip" rgba="0 1 0 0.5"/>
+                    </body>
+                </body>
+            </body>
+        </body>
+        
+        
+    </body>
+
+</mujoco>

@@ -1,0 +1,71 @@
+BasicParameter: {
+    limb_name: 'franka_panda',
+    type: 'arm', # arm/hand/sensor
+    debug: '',
+    dof: 7,
+    frequency: 100,
+    
+    limit_velocity_scale: 1.0,  # 0-1
+    limit_acceleration_scale: 1.0,  # 0-1
+    limit_torque_scale: 1.0,  # 0-1
+}
+
+JointParameter: [  # iiwa_joint_7: 3.01941960595 -> 2.9
+    {joint_name: 'franka_panda_joint_1', lower_position: -2.8973, upper_position: 2.8973, limit_velocity: 2.1750, limit_acceleration: 2, limit_torque:  87, joint_direction:  1, joint_offset: 0},
+    {joint_name: 'franka_panda_joint_2', lower_position: -1.7628, upper_position: 1.7628, limit_velocity: 2.1750, limit_acceleration: 2, limit_torque:  87, joint_direction:   1, joint_offset: 0},
+    {joint_name: 'franka_panda_joint_3', lower_position: -2.8973, upper_position: 2.8973, limit_velocity: 2.1750, limit_acceleration: 2, limit_torque:  87, joint_direction:  1, joint_offset: 0},
+    {joint_name: 'franka_panda_joint_4', lower_position: -3.0718, upper_position: -0.0698, limit_velocity: 2.1750, limit_acceleration: 2, limit_torque:  87, joint_direction:  1, joint_offset: 0},
+    {joint_name: 'franka_panda_joint_5', lower_position: -2.8973, upper_position: 2.8973, limit_velocity: 2.6100, limit_acceleration: 2, limit_torque:  12, joint_direction:  1, joint_offset: 0},
+    {joint_name: 'franka_panda_joint_6', lower_position: -0.0175, upper_position: 3.7525, limit_velocity: 2.6100, limit_acceleration: 2, limit_torque:  12, joint_direction:   1, joint_offset: 0},
+    {joint_name: 'franka_panda_joint_7', lower_position: -2.8973, upper_position: 2.8973, limit_velocity: 2.6100, limit_acceleration: 2, limit_torque:  12, joint_direction:  1, joint_offset: 0}]
+
+EndpointState: {
+
+#    ft_sensor: {
+#        ft_sensor_topic: "/ft_sensor/data",
+#    tool_2_ft_sensor: [0,0,0,0,0,1.5707963],
+#        ft_wrench_tool: [0,0,0,0,0,0],
+#        ft_wrench_world: [0,0,0,0,0,0],
+#    },
+
+}
+
+KinematicsParameter: {
+    torso2base: [0, 0, 0, 0, 0, 0]
+}
+
+DynamicsParameter: {
+    max_load_scale: 1
+}
+
+Hardware: {
+    interface_type: 'REAL', # REAL, SIM
+    urdf: {
+        file_name: 'urdf/panda_arm.urdf',
+        m_chain_start: 'panda_link0',
+        m_chain_end: 'panda_link8',
+        m_gravity_chain_end: 'panda_link8',
+        gravity_vec: [0, 0, -9.81],
+    }
+}
+
+#VisualObject: {
+#    topic_name: '/optitrack/pose',  # '/aruco_marker_publisher/markers',
+##    torso2visual: [3.5580,    6.2352,    0.4336,    0.0934,   -0.0433,   -0.6483,    0.7544] # 2021.01.07 optitrack wrong
+##    torso2visual: [3.9851,    6.8117,   -0.5778,   -0.0050,    0.0093,   -0.6867,    0.7268] # 2021.01.08 optitrack
+#
+##    torso2visual: [3.0070434556042454, 4.874099537441747, -0.3863964559413008, -0.012326207320587501, -0.005987567878148568, 0.7077001249344032, -0.706380030020544] # 2021.01.11 optitrack new kuka position
+#
+##    torso2visual: [2.961995281295818, 4.916118476683392, -0.39696450087992297, 0.011385411201684258, 0.006166004157474636, -0.7035694602562262, 0.7105085273233959] # 2021.01.11 optitrack new kuka position record data
+#    torso2visual: [1.3987376452784863, 4.653675769722029, -0.8559315685108793, 0.002074544928904749, -0.00047623875083418007, 0.9999975608212656, -0.0005897554659517083] # 2021.01.15 optitrack new kuka position record data
+#
+##    torso2visual: [0.2210,    0.0052,    0.0067,   -0.5915,    0.6245,   -0.3646,    0.3566] # 2020.12.12 usb camera
+#}
+
+
+
+
+
+
+
+

@@ -1,0 +1,34 @@
+BasicParameter: {
+  limb_name: 'ur10',
+  type: 'arm',
+  debug: '',
+  dof: 6,
+  frequency: 100,
+  limit_velocity_scale: 1.0,
+  limit_acceleration_scale: 10.0,
+  limit_torque_scale: 1.0,
+}
+JointParameter: [
+  {joint_name: 'shoulder_pan_joint', lower_position: -3.14, upper_position: 3.14, limit_velocity: 3.14, limit_acceleration: 2, limit_torque: 330, joint_direction: 1, joint_offset: 0},
+  {joint_name: 'shoulder_lift_joint', lower_position: -3.14, upper_position: 3.14, limit_velocity: 3.14, limit_acceleration: 2, limit_torque: 330, joint_direction: 1, joint_offset: 0},
+  {joint_name: 'elbow_joint', lower_position: -3.14, upper_position: 3.14, limit_velocity: 3.14, limit_acceleration: 2, limit_torque: 150, joint_direction: 1, joint_offset: 0},
+  {joint_name: 'wrist_1_joint', lower_position: -3.14, upper_position: 3.14, limit_velocity: 6.28, limit_acceleration: 2, limit_torque: 54, joint_direction: 1, joint_offset: 0},
+  {joint_name: 'wrist_2_joint', lower_position: -3.14, upper_position: 3.14, limit_velocity: 6.28, limit_acceleration: 2, limit_torque: 54, joint_direction: 1, joint_offset: 0},
+  {joint_name: 'wrist_3_joint', lower_position: -3.14, upper_position: 3.14, limit_velocity: 6.28, limit_acceleration: 2, limit_torque: 54, joint_direction: 1, joint_offset: 0}]
+EndpointState: {}
+KinematicsParameter: {
+  torso2base: [ 0, 0, 0, 0, 0, 0 ]
+}
+DynamicsParameter: {
+  max_load_scale: 1
+}
+Hardware: {
+  interface_type: 'REAL', # REAL, SIM
+  urdf: {
+      file_name: 'urdf/ur10_robot.urdf',
+      m_chain_start: 'base_link',
+      m_chain_end: 'wrist_3_link',
+      m_gravity_chain_end: 'wrist_3_link',
+      gravity_vec: [ 0, 0, -9.81 ],
+  }
+}
