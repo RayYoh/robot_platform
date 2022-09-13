@@ -1,0 +1,33 @@
+# Gets n trajectory points (time, pose, velocity and acceleration) with
+# given m waypoints (time and pose) based on min_jerk method.
+
+# user-defined string
+string description
+# trajectory planning type: 'joint' or 'cartesian'
+string traj_type
+# mx1 array, time to reach each pose
+float64[] waypoint_time
+# joint: to be reshaped to mx6 array, waypoint pose array including starting pose and ending pose, in [j1,j2,j3,j4,j5,j6] format
+# cartesian: to be reshaped to mx7 array, waypoint pose array including starting pose and ending pose, in [x,y,z,qx,qy,qz,qw] format
+float64[] waypoint_pose
+# joint: 12x1 array, defines position limit for trajectory [j1_min,j1_max,j2_min,j2_max.j3_min,j3_max,j4_min,j4_max,j5_min,j5_max,j6_min,j6_max] format
+# cartesian: 6x1 array, defines position limit for trajectory [x_min, x_max, y_min, y_max, z_min, z_max] format, using min_jerk_opt_w_constrain; leave empty to use min_jerk_opt_wo_constrain
+float64[] arm_limit
+# Generates a trajectory point between two consecutive waypoints for every `time_step`.
+float64 time_step
+# only exists in joint min_jerk planning: whether use unequal matrix equation or interpolate method to deal with trajectory that out of limits, default is 1
+bool using_lmi
+---
+# user-defined string
+string description
+# nx1 array, time to reach each pose
+float64[] trajecotry_time
+# joint: to be reshaped to nx6 array, trajectory pose array including starting pose and ending pose, in [j1,j2,j3,j4,j5,j6] format
+# cartesian: to be reshaped to nx7 array, trajectory pose array including starting pose and ending pose, in [x,y,z,qx,qy,qz,qw] format
+float64[] trajecotry_pose
+# joint: to be reshaped to nx6 array, trajectory linear velocity array
+# cartesian: to be reshaped to nx3 array, trajectory linear velocity array
+float64[] trajecotry_vel
+# joint: to be reshaped to nx6 array, trajectory linear acceleration array
+# cartesian: to be reshaped to nx3 array, trajectory linear acceleration array
+float64[] trajecotry_acc

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import os
 import time
-
 from base import *
 from limb_core_msgs.srv import MetaServiceResponse
+from limb_py.limb_py_utils import register_roscpp_node, create_limb_object
 
 
 class MetaPythonExample(Base):
@@ -69,12 +69,12 @@ class MetaPythonExample(Base):
 
         print('cur_joint_pos', cur_joint_pos)
         print('cur_pose', cur_pose)
-        qout = self._kinematics.calInverseKinematics(cur_joint_pos, cur_pose)
-        _ = self._interface.setJointPosition(qout)
+        # qout = self._kinematics.calInverseKinematics(cur_joint_pos, cur_pose)
+        # _ = self._interface.setJointPosition(qout)
 
         # q_cmd = self.list2Numpy([0, 0.2, 0, 0, 0, 0])
         # self._planning.jointPlanning(self._interface, q_cmd)
-        cur_pose[1] += 0.1
+        cur_pose[2] -= 0.1
         self._planning.endpointPlanning(self._interface, cur_pose)
 
         print(limb_name + ': MetaPythonExample success')
@@ -82,13 +82,13 @@ class MetaPythonExample(Base):
 
 
 if __name__ == '__main__':
-    _limb = import_limb()
-
     robot_name = 'ur10'
+    rospy.init_node('limb_test', anonymous=True)
+    register_roscpp_node('ur10')
     limb_list = dict()
-    limb_config_path = rospack.get_path('limb_donfig') + '/config/' + robot_name
+    limb_config_path = rospack.get_path('limb_config') + '/config/' + robot_name
     print(limb_config_path)
-    limb_list[robot_name] = _limb.Limb(limb_config_path, robot_name+'.yaml')
-
+    limb_list[robot_name] = create_limb_object(limb_config_path, robot_name+'.yaml')
+    #
     example = MetaPythonExample(limb_list)
     example.tick('python_example')

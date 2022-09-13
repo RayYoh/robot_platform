@@ -11,21 +11,29 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(DIRECTORY msg FILES
   EndpointState.msg
   EndpointStates.msg
-  Float64MultiArray.msg
   JointCommand.msg
   JointState.msg
+  JointStatus.msg
   MarkerArray.msg
   MarkerStringArray.msg
   TactileState.msg
-  ObjectTrajectory.msg
   ContactState.msg
+  ObjectTrajectory.msg
+  Float64MultiArray.msg
+  ObjectInfo.msg
+  ShutdownReason.msg
 )
 
 add_service_files(DIRECTORY srv FILES
   GetObjectPose.srv
-  MetaService.srv
+  GetObjectPoseWithImage.srv
   GetObjectTrajectory.srv
   GetTactileState.srv
+  MetaService.srv
+  GetObjectInfo.srv
+  SetObjectInfo.srv
+  ShutdownSystem.srv
+  GetMinJerkTraj.srv
 )
 
 generate_messages(DEPENDENCIES

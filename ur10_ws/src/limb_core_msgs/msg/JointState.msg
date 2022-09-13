@@ -23,6 +23,8 @@ int32 mode # joint/basic
 # for effector: reset ready moving gripping error
 string state
 
+# Default status is `kRunning`.
+limb_core_msgs/JointStatus status
 
 # for effector: 0~1
 string[] name
@@ -31,5 +33,3 @@ float64[] velocity
 float64[] acceleration
 float64[] torque
 float64[] current_torque
-
-
