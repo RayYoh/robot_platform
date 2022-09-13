@@ -27,7 +27,8 @@ This repository is not only for UR10, you can use this pipeline to build your ow
 - 20220901
     - The training is not stable. Reason (maybe): sometimes the position is hard for robot to reach. (Solution: modify `robot_end_pose`).
     - The training process maybe be studk in local optimum. (Don't know the reason now.)
-
+- 20220913
+    - Ubuntu 18.04 libboost_system.so.1.65.1
 ## TODO
 - 20220901
     - Add sensors on the robot and compliant control.
