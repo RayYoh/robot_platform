@@ -901,12 +901,6 @@ EPSILON = _limb_py.EPSILON
 DEGREE2RADIAN = _limb_py.DEGREE2RADIAN
 XYZSEQUENCE = _limb_py.XYZSEQUENCE
 LIMB_ARM_TYPE_NONE = _limb_py.LIMB_ARM_TYPE_NONE
-LIMB_ARM_TYPE_KUKA_IIWA14 = _limb_py.LIMB_ARM_TYPE_KUKA_IIWA14
-LIMB_ARM_TYPE_KINOVA_GEN3 = _limb_py.LIMB_ARM_TYPE_KINOVA_GEN3
-LIMB_ARM_TYPE_UR3 = _limb_py.LIMB_ARM_TYPE_UR3
-LIMB_ARM_TYPE_UR5 = _limb_py.LIMB_ARM_TYPE_UR5
-LIMB_ARM_TYPE_UR10 = _limb_py.LIMB_ARM_TYPE_UR10
-LIMB_ARM_TYPE_UR16E = _limb_py.LIMB_ARM_TYPE_UR16E
 LIMB_ARM_TYPE_IRB1100 = _limb_py.LIMB_ARM_TYPE_IRB1100
 class BasicParameter(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
@@ -1851,16 +1845,6 @@ class Kinematics(KinematicsTrans):
 # Register Kinematics in _limb_py:
 _limb_py.Kinematics_swigregister(Kinematics)
 
-UR3 = _limb_py.UR3
-UR5 = _limb_py.UR5
-UR10 = _limb_py.UR10
-UR16e = _limb_py.UR16e
-
-def forward(q: "double const *", T: "double *", ur_type: "int") -> "void":
-    return _limb_py.forward(q, T, ur_type)
-
-def inverse(T: "double const *", q_sols: "double *", q6_des: "double", ur_type: "int") -> "int":
-    return _limb_py.inverse(T, q_sols, q6_des, ur_type)
 class Dynamics(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
@@ -2435,32 +2419,6 @@ _limb_py.LimbList_swigregister(LimbList)
 def LimbList_CreateFromRosParameterServer(nh: "ros::NodeHandle &") -> "std::shared_ptr< LimbList >":
     return _limb_py.LimbList_CreateFromRosParameterServer(nh)
 
-class MetaBase(object):
-    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
-
-    def __init__(self, *args, **kwargs):
-        raise AttributeError("No constructor defined - class is abstract")
-    __repr__ = _swig_repr
-    _input = property(_limb_py.MetaBase__input_get, _limb_py.MetaBase__input_set)
-    _limb_list = property(_limb_py.MetaBase__limb_list_get, _limb_py.MetaBase__limb_list_set)
-    _limb_name = property(_limb_py.MetaBase__limb_name_get, _limb_py.MetaBase__limb_name_set)
-    __swig_destroy__ = _limb_py.delete_MetaBase
-
-    def initialize(self, *args) -> "void":
-        return _limb_py.MetaBase_initialize(self, *args)
-
-    def execute(self, loop: "bool") -> "std::string":
-        return _limb_py.MetaBase_execute(self, loop)
-
-    def RequestStop(self) -> "void":
-        return _limb_py.MetaBase_RequestStop(self)
-
-    def IsStopRequested(self) -> "bool":
-        return _limb_py.MetaBase_IsStopRequested(self)
-
-# Register MetaBase in _limb_py:
-_limb_py.MetaBase_swigregister(MetaBase)
-
 class ObjectTraj(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
@@ -2532,6 +2490,24 @@ class TactilePixel(object):
 # Register TactilePixel in _limb_py:
 _limb_py.TactilePixel_swigregister(TactilePixel)
 
+class LocalTactileGeometry(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    is_soft = property(_limb_py.LocalTactileGeometry_is_soft_get, _limb_py.LocalTactileGeometry_is_soft_set)
+    weight = property(_limb_py.LocalTactileGeometry_weight_get, _limb_py.LocalTactileGeometry_weight_set)
+    support_points = property(_limb_py.LocalTactileGeometry_support_points_get, _limb_py.LocalTactileGeometry_support_points_set)
+    support_normals = property(_limb_py.LocalTactileGeometry_support_normals_get, _limb_py.LocalTactileGeometry_support_normals_set)
+
+    def __init__(self):
+        _limb_py.LocalTactileGeometry_swiginit(self, _limb_py.new_LocalTactileGeometry())
+    __swig_destroy__ = _limb_py.delete_LocalTactileGeometry
+
+# Register LocalTactileGeometry in _limb_py:
+_limb_py.LocalTactileGeometry_swigregister(LocalTactileGeometry)
+
+
+def ToTargetMode(target_mode: "std::string const &") -> "std::optional< perception::TargetMode >":
+    return _limb_py.ToTargetMode(target_mode)
 
 def ToRosServiceObjectName(object: "perception::TargetObject") -> "char const *":
     return _limb_py.ToRosServiceObjectName(object)
