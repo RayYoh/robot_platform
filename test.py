@@ -2,7 +2,7 @@ import os
 import numpy as np
 from os.path import dirname, abspath
 import gym
-import ur10_mujoco_gym
+import ur10_env
 from stable_baselines3 import PPO
 from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.logger import configure
