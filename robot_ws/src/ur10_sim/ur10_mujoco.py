@@ -147,7 +147,7 @@ class RobotSimulation(object):
 
 def main():
     # Your terminal path should be: /path/to/ur10/
-    MODEL_XML_PATH = os.path.abspath(os.path.join(os.getcwd(), "ur10_platform/ur10_robot_joint_ctrl.xml"))
+    MODEL_XML_PATH = os.path.abspath(os.path.join(os.getcwd(), "ur10_platform/ur10_joint_ctrl.xml"))
     sim = RobotSimulation(MODEL_XML_PATH)
 
     print('start job')

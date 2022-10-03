@@ -29,6 +29,9 @@
                                     <inertial pos="0.010517 -0.004252 0.061597" quat="0.992939 -0.0762041 0.0733595 -0.0537067" mass="0.735522" diaginertia="0.0127345 0.0101055 0.00451803" />
                                     <joint name="panda_joint7" pos="0 0 0" axis="0 0 1" limited="true" range="-2.8973 2.8973" />
                                     <geom class="Visual" rgba="0.4 0.4 0.4 1" mesh="link7" />
+                                    <body name="robot_end" pos="0 0 0.1068">
+                                        <site name="robot_end" size="0.005 0.005 0.005" pos="0 0 0" type="sphere" rgba="0 1 0 0.5"/>
+                                    </body>
                                     <body name="hand" pos="0 0 0.107" quat="0.9238795 0 0 -0.3826834">
                                         <inertial mass="0.73" pos="-0.01 0 0.03" diaginertia="0.001 0.0025 0.0017"/>
                                         <geom class="Visual" mesh="hand" />

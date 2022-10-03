@@ -1,0 +1,20 @@
+<!--franka panda platform with gripper but not control.-->
+<mujoco model="franka_panda_platform">
+
+	<include file="assets/assets.xml"></include>
+
+	<worldbody>
+		<geom name="floor" pos="0. 0. 0" size="3 3 .125" type="plane" condim="4" material="floorplane" contype="1" conaffinity="1"></geom>
+		<light directional="true" diffuse='1.0 1.0 1.0' pos="0 0 3" dir="0 0 -1"/>
+		<include file="franka_panda/franka_panda.xml"></include>
+		<body mocap="true" name="robot_end_mocap" pos="0 0 2" >
+            <geom conaffinity="0" contype="0" size="0.005 0.005 0.005" pos="0 0 0" type="box" rgba="1 0 0 0.5"/>
+            <geom conaffinity="0" contype="0" pos="0 0 0" rgba="1 0 0 0.5" size="1 0.005 0.005" type="box"/>
+            <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 1 0 0.5" size="0.005 1 0.001" type="box"/>
+            <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0 1 0.5" size="0.005 0.005 1" type="box"/>
+        </body>
+	</worldbody>
+
+<!--    <include file="assets/actuator.xml"></include>-->
+
+</mujoco>

@@ -6,12 +6,7 @@
 	<worldbody>
 		<geom name="floor" pos="0. 0. 0" size="3 3 .125" type="plane" condim="4" material="floorplane" contype="1" conaffinity="1"></geom>
 		<light directional="true" diffuse='1.0 1.0 1.0' pos="0 0 3" dir="0 0 -1"/>
-
-
 		<include file="franka_panda/franka_panda.xml"></include>
-
-
-
 	</worldbody>
 
     <include file="assets/actuator.xml"></include>

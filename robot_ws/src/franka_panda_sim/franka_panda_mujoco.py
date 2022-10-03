@@ -132,7 +132,7 @@ class RobotSimulation(object):
 
 
 def main():
-    MODEL_XML_PATH = os.path.abspath(os.path.join(os.getcwd(), 'franka_panda_platform/main_franka_panda.xml'))
+    MODEL_XML_PATH = os.path.abspath(os.path.join(os.getcwd(), 'franka_panda_platform/panda_joint_control.xml'))
     sim = RobotSimulation(MODEL_XML_PATH)
 
     print('start job')
