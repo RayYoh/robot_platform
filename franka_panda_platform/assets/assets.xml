@@ -63,6 +63,10 @@
             <geom material="gripper_mat" contype="1" conaffinity="1" friction="1 1 1" condim="4" group="4" rgba="0.5 0.5 0.5 0.5" />
         </default>
 
+        <default class="finger">
+            <joint axis="0 1 0" type="slide" range="0 0.04"/>
+        </default>
+
         <!-- other -->
 
     </default>
@@ -87,6 +91,9 @@
         <mesh name="link5" file="link5.stl" />
         <mesh name="link6" file="link6.stl" />
         <mesh name="link7" file="link7.stl" />
+        <mesh name="hand" file="hand.stl" />
+        <mesh name="left_finger" file="finger.stl" />
+        <mesh name="right_finger" file="finger.stl" />
     </asset>
 
 

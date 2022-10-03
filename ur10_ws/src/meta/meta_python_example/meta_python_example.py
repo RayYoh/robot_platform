@@ -13,9 +13,9 @@ class MetaPythonExample(Base):
     def tick(self, task_name):
         print("recv: ", task_name)
         self._input = self.input_init(task_name, 'meta_python_example')
-        print(self._input)
+        print('input: ', self._input)
         limb_name = self._input['Robot']['arm'][0]
-        print(limb_name)
+        print('limb_name: ', limb_name)
         self._config = self._limb_list[limb_name]._config
         self._kinematics = self._limb_list[limb_name]._kinematics
         self._dynamics = self._limb_list[limb_name]._dynamics

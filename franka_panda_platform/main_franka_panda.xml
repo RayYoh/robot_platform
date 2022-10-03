@@ -1,4 +1,4 @@
-
+<!--franka panda platform with gripper but not control.-->
 <mujoco model="franka_panda_platform">
 
 	<include file="assets/assets.xml"></include>

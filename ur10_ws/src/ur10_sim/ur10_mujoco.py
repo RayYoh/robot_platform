@@ -28,7 +28,7 @@ class RobotSimulation(object):
         t2.join()
 
     def ros_init(self):
-        rospy.init_node('ur10_description')
+        rospy.init_node('ur10_platform')
         # self.env.sim.data.ctrl[:] = np.array([1.5707963, 0, 1.5707963, 0, -1.5707963, 0])
 
         self.robot_list = ['ur10']
@@ -144,7 +144,7 @@ class RobotSimulation(object):
 
 def main():
     # Your terminal path should be: /path/to/ur10/
-    MODEL_XML_PATH = os.path.abspath(os.path.join(os.getcwd(), "ur10_description/ur10_robot_joint_ctrl.xml"))
+    MODEL_XML_PATH = os.path.abspath(os.path.join(os.getcwd(), "ur10_platform/ur10_robot_joint_ctrl.xml"))
     sim = RobotSimulation(MODEL_XML_PATH)
 
     print('start job')

@@ -1,6 +1,6 @@
 import numpy as np
-
-from ..gym_robot_env import rotations, gym_robot_env, utils
+from . import robot_env
+from gym.envs.robotics import rotations, utils
 
 
 def goal_distance(goal_a, goal_b):
@@ -8,7 +8,7 @@ def goal_distance(goal_a, goal_b):
     return np.linalg.norm(goal_a - goal_b, axis=-1)
 
 
-class UREnv(gym_robot_env.RobotEnv):
+class UREnv(robot_env.RobotEnv):
     def __init__(
             self,
             model_path,

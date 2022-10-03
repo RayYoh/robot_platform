@@ -1,7 +1,7 @@
 import os
 from gym import utils
 from ur10_env.envs import ur_env
-MODEL_XML_PATH = os.path.abspath(os.path.join(os.getcwd(), "ur10_description/ur10_robot_ee_ctrl.xml"))
+MODEL_XML_PATH = os.path.abspath(os.path.join(os.getcwd(), "ur10_platform/ur10_robot_ee_ctrl.xml"))
 
 
 class URReachEnv(ur_env.UREnv, utils.EzPickle):
