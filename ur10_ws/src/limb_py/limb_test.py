@@ -14,11 +14,8 @@ def main():
     register_roscpp_node('limb_py_test')
     limb_list = {}
 
-    manipulation_path = rospack.get_path('limb_config')
-    limb_list['irb1100_left'] = create_limb_object(
-        manipulation_path, 'abb/irb1100_left.yaml')
-    limb_list['irb1100_right'] = create_limb_object(
-        manipulation_path, '/limb_demo/config/abb/irb1100_right.yaml')
+    limb_config_path = rospack.get_path('limb_config')
+    limb_list['ur10'] = create_limb_object(limb_config_path, 'config/ur10/ur10.yaml')
 
     # Example test value
     start_pos = np.array([0.4, -0.2, 0.1, -0.5, -0.5, -0.5, 0.5])
@@ -27,7 +24,7 @@ def main():
     current_step_time_slap = 5e-5
     start_vel = np.array([0.0, 0.0, 0.0])
     vel_array = start_vel
-    limb_list['irb1100_left']._planning.cartesianSpacePlanning(
+    limb_list['ur10']._planning.cartesianSpacePlanning(
         start_pos, pos_array, current_step_duration, current_step_time_slap, start_vel, vel_array)
 
 

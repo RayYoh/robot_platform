@@ -26,7 +26,7 @@ DynamicsParameter:
 Hardware:
   interface_type: REAL, # REAL, SIM
   urdf:
-      file_name: urdf/ur10_robot.urdf
+      file_name: config/ur10/urdf/ur10_robot.urdf
       m_chain_start: base_link
       m_chain_end: wrist_3_link
       m_gravity_chain_end: wrist_3_link
