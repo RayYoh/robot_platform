@@ -11,6 +11,7 @@ from copy import deepcopy
 
 from geometry_msgs.msg import Pose
 
+
 class RobotSimulation(object):
     def __init__(self, model_path):
         self.env = RobotEnv(model_path)
