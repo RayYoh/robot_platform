@@ -1,6 +1,6 @@
 <mujoco model="ur10">
     <compiler angle="radian" meshdir="meshes/" coordinate="local" inertiafromgeom='auto' texturedir="textures"/>
-    <option timestep="0.002" apirate="200" iterations="20" noslip_iterations="20" tolerance="1e-10" impratio="10"
+    <option timestep="0.01" apirate="200" iterations="20" noslip_iterations="20" tolerance="1e-10" impratio="10"
 			gravity="0 0 -9.81" solver="PGS" cone="elliptic" />
     <size njmax="1500" nconmax="500" nstack="5000000" />
     <visual>

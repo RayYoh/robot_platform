@@ -5,6 +5,7 @@ import numpy as np
 import gym
 from gym import error, spaces
 from gym.utils import seeding
+from gym.envs.robotics import rotations
 
 try:
     import mujoco_py
@@ -19,7 +20,7 @@ DEFAULT_SIZE = 500
 
 
 class RobotEnv(gym.GoalEnv):
-    def __init__(self, model_path, initial_qpos, n_actions, n_substeps):
+    def __init__(self, model_path, initial_qpos, n_actions, frame_skip):
         if model_path.startswith("/"):
             fullpath = model_path
         else:
@@ -27,8 +28,9 @@ class RobotEnv(gym.GoalEnv):
         if not os.path.exists(fullpath):
             raise IOError("File {} does not exist".format(fullpath))
 
+        self.frame_skip = frame_skip
         self.model = mujoco_py.load_model_from_path(fullpath)
-        self.sim = mujoco_py.MjSim(self.model, nsubsteps=n_substeps)
+        self.sim = mujoco_py.MjSim(self.model)
         self.viewer = None
         self._viewers = {}
 
@@ -39,6 +41,8 @@ class RobotEnv(gym.GoalEnv):
 
         self.seed()
         self._env_setup(initial_qpos=initial_qpos)
+        print(self.sim.data.get_site_xpos("robot_end"))
+        print(rotations.mat2quat(self.sim.data.get_site_xmat("robot_end")))
         self.initial_state = copy.deepcopy(self.sim.get_state())
 
         self.goal = self._sample_goal()
@@ -60,7 +64,11 @@ class RobotEnv(gym.GoalEnv):
 
     @property
     def dt(self):
-        return self.sim.model.opt.timestep * self.sim.nsubsteps
+        return self.sim.model.opt.timestep * self.frame_skip
+
+    def do_simulation(self):
+        for _ in range(self.frame_skip):
+            self.sim.step()
 
     # Env methods
     # ----------------------------
@@ -72,7 +80,7 @@ class RobotEnv(gym.GoalEnv):
     def step(self, action):
         action = np.clip(action, self.action_space.low, self.action_space.high)
         self._set_action(action)
-        self.sim.step()
+        self.do_simulation()
         self._step_callback()
         obs = self._get_obs()
 

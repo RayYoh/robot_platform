@@ -8,6 +8,7 @@ import numpy as np
 import time
 import copy
 
+
 class RobotEnv(object):
     def __init__(self, model_path, frame_skip=1):
         """

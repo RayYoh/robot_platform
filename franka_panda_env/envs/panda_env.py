@@ -12,7 +12,7 @@ class PandaEnv(robot_env.RobotEnv):
     def __init__(
             self,
             model_path,
-            n_substeps,
+            frame_skip,
             end_extra_height,
             has_object,
             target_in_the_air,
@@ -34,7 +34,7 @@ class PandaEnv(robot_env.RobotEnv):
 
         super(PandaEnv, self).__init__(
             model_path=model_path,
-            n_substeps=n_substeps,
+            frame_skip=frame_skip,
             n_actions=3,
             initial_qpos=initial_qpos,
         )
@@ -61,12 +61,18 @@ class PandaEnv(robot_env.RobotEnv):
         pos_ctrl = action[:3]
 
         pos_ctrl *= 0.05  # limit maximum change in position
-        rot_ctrl = [1.0, -1.0, 0.0, 0.0]  # fixed rotation of the end effector, expressed as a quaternion
+        rot_ctrl = [0.0, 0.0, 0.0, 0.0]  # fixed rotation of the end effector, expressed as a quaternion
         action = np.concatenate([pos_ctrl, rot_ctrl])
 
         # Apply action to simulation.
         utils.ctrl_set_action(self.sim, action)
-        utils.mocap_set_action(self.sim, action)
+        # utils.mocap_set_action(self.sim, action)
+        if self.sim.model.nmocap > 0:
+            action, _ = np.split(action, (self.sim.model.nmocap * 7,))
+            action = action.reshape(self.sim.model.nmocap, 7)
+            pos_delta = action[:, :3]
+            utils.reset_mocap2body_xpos(self.sim)
+            self.sim.data.mocap_pos[:] = self.sim.data.mocap_pos + pos_delta
 
     def _get_obs(self):
         # positions
@@ -173,12 +179,11 @@ class PandaEnv(robot_env.RobotEnv):
         robot_end_pose = [0, 0.05, 0] + self.sim.data.get_site_xpos("robot_end")
         # fix the orientation
         # this is equal to robot_end_quat = np.array([0.70711, -0.70711, 0.0, 0.0])
-        robot_end_quat = np.array([1.0, -1.0, 0.0, 0.0])
+        # robot_end_quat = np.array([0.08456899, -0.88793278, 0.45212116, -0.0031498])
         self.sim.data.set_mocap_pos("robot_end_mocap", robot_end_pose)
-        self.sim.data.set_mocap_quat("robot_end_mocap", robot_end_quat)
+        # self.sim.data.set_mocap_quat("robot_end_mocap", robot_end_quat)
         # move robot_end to the robot_end_mocap
-        for _ in range(10):
-            self.sim.step()
+        self.do_simulation()
 
         # Extract information for sampling goals.
         self.initial_robot_end_xpos = self.sim.data.get_site_xpos("robot_end").copy()
