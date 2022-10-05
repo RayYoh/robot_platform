@@ -30,14 +30,14 @@ class RobotSimulation(object):
     def ros_init(self):
         rospy.init_node('ur10_platform')
         # self.env.sim.data.ctrl[:] = np.array([1.5707963, 0, 1.5707963, 0, -1.5707963, 0])
-        initial_qpos = [1.5707963, 0, 1.5707963, 0, -1.5707963, 0]
+        initial_qpos = [1.5707963, 0, 1.5707963, 0, -1.5707963, 0, 0]
         self.robot_list = ['ur10']
         self.robot_endpoint_cmd_sub_callback = {'ur10': self.robot_endpoint_command_subscriber}
         self.robot_joint_cmd_sub_callback = {'ur10': self.robot_joint_command_subscriber}
 
         self.joint_names = dict()
         self.joint_names['ur10'] = ['shoulder_pan_joint', 'shoulder_lift_joint', 'elbow_joint', 
-                                    'wrist_1_joint', 'wrist_2_joint', 'wrist_3_joint']
+                                    'wrist_1_joint', 'wrist_2_joint', 'wrist_3_joint'] # 'right_driver_joint'
 
         for i in range(len(self.joint_names['ur10'])):
             self.env.set_joint_position(self.joint_names['ur10'][i], initial_qpos[i])
@@ -136,6 +136,7 @@ class RobotSimulation(object):
         print("qpos_init:", qpos_init)
         nu = self.env.model.nu
         print('Dof: ', nu)
+        print(self.env.get_joint_name())
         while not rospy.is_shutdown():
             des = np.array(self.joint_position_command['ur10'])
             # self.env.do_simulation()
@@ -147,7 +148,9 @@ class RobotSimulation(object):
 
 def main():
     # Your terminal path should be: /path/to/ur10/
-    MODEL_XML_PATH = os.path.abspath(os.path.join(os.getcwd(), "ur10_platform/ur10_joint_ctrl.xml"))
+    # MODEL_XML_PATH = os.path.abspath(os.path.join(os.getcwd(), "ur10_platform/ur10_joint_ctrl.xml"))
+    # print(MODEL_XML_PATH)
+    MODEL_XML_PATH = "/home/rayyoh/robot_platform/ur10_platform/ur10_joint_ctrl.xml"
     sim = RobotSimulation(MODEL_XML_PATH)
 
     print('start job')

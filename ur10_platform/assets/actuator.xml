@@ -1,0 +1,11 @@
+<mujoco>
+    <actuator>
+        <position name="shoulder_pan_joint" class="ur10" ctrlrange="-6.28319 6.28319" forcerange="-330 330" joint="shoulder_pan_joint" kp="1000"/>
+        <position name="shoulder_lift_joint" class="ur10" ctrlrange="-6.28319 6.28319" forcerange="-330 330" joint="shoulder_lift_joint" kp="3000"/>
+        <position name="elbow_joint" class="ur10" ctrlrange="-3.14159 3.14159" forcerange="-150 150" joint="elbow_joint" kp="1000"/>
+        <position name="wrist_1_joint" class="ur10" ctrlrange="-6.28319 6.28319" forcerange="-56 56" joint="wrist_1_joint" kp="100"/>
+        <position name="wrist_2_joint" class="ur10" ctrlrange="-6.28319 6.28319" forcerange="-56 56" joint="wrist_2_joint" kp="100"/>
+        <position name="wrist_3_joint" class="ur10" ctrlrange="-6.28319 6.28319" forcerange="-56 56" joint="wrist_3_joint" kp="100"/>
+<!--        <position class="2f85" name="fingers_actuator" tendon="split" forcerange="-5 5" ctrlrange="0 255" kp="0.55"/>-->
+    </actuator>
+</mujoco>

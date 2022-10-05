@@ -1,0 +1,47 @@
+<mujoco model="ur10">
+    <body name="base" pos="0 0 0.5">
+        <geom name="base" class="ur10_vis" type="mesh" contype="0" conaffinity="0" group="1" rgba="0.7 0.7 0.7 1" mesh="base_vis" />
+        <geom class="ur10_col" mesh="base"/>
+        <body name="shoulder_link" pos="0 0 0.1273">
+            <inertial pos="0 0 0" mass="7.778" diaginertia="0.0314743 0.0314743 0.0218756" />
+            <joint name="shoulder_pan_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-6.28319 6.28319" damping="100"/>
+            <geom name="shoulder" type="mesh" contype="0" conaffinity="0" group="1" rgba="0.7 0.7 0.7 1" mesh="shoulder_vis" />
+            <geom class="ur10_col" mesh="shoulder"/>
+            <body name="upper_arm_link" pos="0 0.220941 0" quat="0.707107 0 0.707107 0" euler="0 0 0">
+                <inertial pos="0 -0.045 0.306" mass="12.93" diaginertia="0.421754 0.421754 0.0363656" />
+                <joint name="shoulder_lift_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-6.28319 6.28319" damping="300"/>
+                <geom name="upperarm" type="mesh" contype="0" conaffinity="0" group="1" rgba="0.7 0.7 0.7 1" mesh="upperarm_vis" />
+                <geom class="ur10_col" mesh="upperarm"/>
+                <body name="forearm_link" pos="0 -0.1719 0.612">
+                    <inertial pos="0 0 0.28615" mass="3.87" diaginertia="0.11107 0.11107 0.0108844" />
+                    <joint name="elbow_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-3.14159 3.14159" damping="100"/>
+                    <geom name="forearm" type="mesh" contype="0" conaffinity="0" group="1" rgba="0.7 0.7 0.7 1" mesh="forearm_vis" />
+                    <geom class="ur10_col" mesh="forearm"/>
+                    <body name="wrist_1_link" pos="0 0 0.5723" quat="0.707107 0 0.707107 0" euler="0 0 0">
+                        <inertial pos="0 0.1149 0" quat="0.5 0.5 -0.5 0.5" mass="1.96" diaginertia="0.0055125 0.00510825 0.00510825" />
+                        <joint name="wrist_1_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-6.28319 6.28319" damping="20"/>
+                        <geom name="wrist1" type="mesh" contype="0" conaffinity="0" group="1" rgba="0.7 0.7 0.7 1" mesh="wrist1_vis" />
+                        <geom class="ur10_col" mesh="wrist1"/>
+                        <body name="wrist_2_link" pos="0 0.1149 0">
+                            <inertial pos="0 0 0.1157" quat="0.5 0.5 -0.5 0.5" mass="1.96" diaginertia="0.0055125 0.00510825 0.00510825" />
+                            <joint name="wrist_2_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-6.28319 6.28319" damping="20"/>
+                            <geom name="wrist2" type="mesh" contype="0" conaffinity="0" group="1" rgba="0.7 0.7 0.7 1" mesh="wrist2_vis" />
+                            <geom class="ur10_col" mesh="wrist2"/>
+                            <body name="wrist_3_link" pos="0 0 0.1157">
+                                <inertial pos="0 0.0769759 0" quat="0.707107 0 0 0.707107" mass="0.203" diaginertia="0.000204542 0.000117966 0.000117966" />
+                                <joint name="wrist_3_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-6.28319 6.28319" damping="20"/>
+                                <geom name="wrist3" type="mesh" contype="0" conaffinity="0" group="1" rgba="0.7 0.7 0.7 1" mesh="wrist3_vis" />
+                                <geom class="ur10_col" mesh="wrist3"/>
+<!--                                    <geom size="0.005 0.005 0.005" pos="0 0.0822 0" quat="0.707107 0 0 0.707107" type="box" rgba="0 1 0 0.5"/>-->
+                                <body name="robot_end" pos="0 0.09 0">
+                                    <site name="robot_end" size="0.005 0.005 0.005" pos="0 0 0" type="sphere" rgba="0 1 0 0.5"/>
+                                    <include file="robotiq_2f85/2f85.xml"></include>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </body>
+</mujoco>

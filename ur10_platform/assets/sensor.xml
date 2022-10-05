@@ -1,0 +1,6 @@
+<mujoco>
+    <sensor>
+        <force name="robot_sensor_force" site="robot_end" />
+        <torque name="robot_sensor_torque" site="robot_end" />
+    </sensor>
+</mujoco>

@@ -72,8 +72,8 @@ class MetaPythonExample(Base):
         # qout = self._kinematics.calInverseKinematics(cur_joint_pos, cur_pose)
         # _ = self._interface.setJointPosition(qout)
 
-        # q_cmd = self.list2Numpy([0, 0.2, 0, 0, 0, 0])
-        # self._planning.jointPlanning(self._interface, q_cmd)
+        q_cmd = self.list2Numpy([0, 0.2, 0, 0, 0, 0])
+        self._planning.jointPlanning(self._interface, q_cmd)
         cur_pose[2] -= 0.1
         self._planning.endpointPlanning(self._interface, cur_pose)
 

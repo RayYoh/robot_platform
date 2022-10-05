@@ -10,9 +10,9 @@ from stable_baselines3.common.logger import configure
 
 
 def test_env():
-    # env = gym.make('UR10Reach-v0', reward_type='dense')
+    env = gym.make('UR10Reach-v0', reward_type='dense')
     # env = gym.make('FetchReach-v1', reward_type='dense')
-    env = gym.make('PandaReach-v0', reward_type='dense')
+    # env = gym.make('PandaReach-v0', reward_type='dense')
     print(env.action_space)
     print(env.observation_space)
     env.reset()
