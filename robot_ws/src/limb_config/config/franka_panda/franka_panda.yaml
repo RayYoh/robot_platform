@@ -1,6 +1,7 @@
 BasicParameter: {
     limb_name: 'franka_panda',
     type: 'arm', # arm/hand/sensor
+    location: left,
     debug: '',
     dof: 7,
     frequency: 100,

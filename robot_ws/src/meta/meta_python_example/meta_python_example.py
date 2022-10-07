@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import os
 import time
-from base import *
+from meta.meta_base.base import *
 from limb_core_msgs.srv import MetaServiceResponse
 from limb_py.limb_py_utils import register_roscpp_node, create_limb_object
 
@@ -21,6 +21,9 @@ class MetaPythonExample(Base):
         self._dynamics = self._limb_list[limb_name]._dynamics
         self._planning = self._limb_list[limb_name]._planning
         self._interface = self._limb_list[limb_name]._interface
+
+        DoF = self._config.getDoF()
+        print('DoF: ', DoF)
 
         joint_name = self._config.getJointName()
         print('joint_name: ', joint_name)
@@ -82,13 +85,12 @@ class MetaPythonExample(Base):
 
 
 if __name__ == '__main__':
-    robot_name = 'ur10'
-    rospy.init_node('limb_test', anonymous=True)
-    register_roscpp_node('ur10')
+    robot_name = 'franka_panda'
+    rospy.init_node(robot_name+'_joint_planning', anonymous=True)
+    register_roscpp_node(robot_name)
     limb_list = dict()
     limb_config_path = rospack.get_path('limb_config') + '/config/' + robot_name
     print(limb_config_path)
     limb_list[robot_name] = create_limb_object(limb_config_path, robot_name+'.yaml')
-    #
     example = MetaPythonExample(limb_list)
     example.tick('python_example')

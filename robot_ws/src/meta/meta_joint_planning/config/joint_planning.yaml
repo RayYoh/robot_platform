@@ -1,7 +1,7 @@
-Meta: MetaPythonExample
+Meta: MetaJoingPlanning
 Robot:
   arm:
-    - franka_panda
+    - ur10
   effector:
 Object: {}
 Constraint: {}
